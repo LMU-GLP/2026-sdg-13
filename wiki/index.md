@@ -8,7 +8,4 @@ Start here. Every page cites the source file in `sources/` it came from — if y
 - [The global heat trend](global-heat-trend.md) — ~550,000 heat deaths a year worldwide per the Lancet Countdown, and why that figure can't be added to the local ones.
 - [SDG 13: the official targets](sdg13-targets.md) — the UN's actual targets and indicators for this goal.
 - [Existing heat-safety programs](heat-safety-programs.md) — what LA and South Korea are each already doing about this, and the gap in what we know about Korea.
-
-## Not yet written
-
-- `problem-statement.md` — the region and population commitment, still to come (see Session 1, step 5).
+- [Problem statement](problem-statement.md) — the region and population we've committed to: South Korea, elderly outdoor farm workers.
