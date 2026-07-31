@@ -74,7 +74,7 @@ whole thing should be structured:
 https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 
 Then start from the two sources already in sources/ and read them both. Find
-three more yourself: the UN targets for our goal at
+three more: the UN targets for our goal at
 https://sdgs.un.org/goals/goal13, one dataset with real figures, and one
 program or business already working on this problem. Save each new one as its
 own file in sources/, in the same format as the two that are there: page title,
