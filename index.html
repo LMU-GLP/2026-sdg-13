@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heat Check-In — a service for solo elderly farmers in South Korea</title>
+<style>
+  :root {
+    --ink: #1b1b1b;
+    --paper: #faf7f2;
+    --panel: #ffffff;
+    --accent: #c1440e;
+    --accent-dark: #8f3208;
+    --muted: #6b6459;
+    --line: #e4ddd0;
+    --safe: #2f6b4f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  header.hero {
+    background: linear-gradient(160deg, var(--accent-dark), var(--accent));
+    color: #fff;
+    padding: 48px 0 40px;
+  }
+  header.hero .wrap { }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    opacity: 0.85;
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-size: clamp(1.6rem, 5vw, 2.3rem);
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+  .lede {
+    font-size: 1.05rem;
+    max-width: 60ch;
+    opacity: 0.95;
+  }
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .stat {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 10px;
+    padding: 14px 16px;
+    flex: 1 1 200px;
+  }
+  .stat .num { font-size: 1.6rem; font-weight: 700; display: block; }
+  .stat .label { font-size: 0.85rem; opacity: 0.9; }
+  .stat a { color: #fff; text-decoration: underline; opacity: 0.85; font-size: 0.72rem; }
+
+  main { padding: 40px 0 60px; }
+  section { margin-bottom: 44px; }
+  h2 {
+    font-size: 1.35rem;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+  .case-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 16px 0;
+    font-size: 0.97rem;
+  }
+  .cite {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .cite a { color: var(--accent-dark); }
+  p a, li a { color: var(--accent-dark); }
+
+  .who-what {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 560px) {
+    .who-what { grid-template-columns: 1fr; }
+  }
+  .who-what .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .who-what h3 { margin: 0 0 6px; font-size: 1rem; color: var(--accent-dark); }
+
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flow-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .flow-step .n {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .flow-step .body b { display: block; margin-bottom: 2px; }
+  .flow-arrow {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1.1rem;
+    margin: -4px 0 6px;
+  }
+
+  .scope-box {
+    background: #fff8ee;
+    border: 1px solid #e8d3ab;
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .scope-box h3 { margin-top: 0; font-size: 1rem; }
+  .scope-box ul { margin: 8px 0 0; padding-left: 20px; }
+  .scope-box li { margin-bottom: 8px; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 26px 0 50px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--accent-dark); }
+  blockquote {
+    margin: 10px 0;
+    padding-left: 14px;
+    border-left: 3px solid var(--line);
+    font-style: italic;
+    color: #3a352e;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">SDG 13 · Climate Action · South Korea</p>
+    <h1>A neighbor knows before it's too late.</h1>
+    <p class="lede">
+      A woman in her 80s was found unconscious near a greenhouse in Jinju. Another,
+      also in her 80s, was found dead in a rice paddy on Jeju Island. Both were
+      farming alone.
+      <span class="cite">— <a href="sources/korea-heat-deaths-elderly.md">Korea heat deaths, elderly</a></span>
+    </p>
+    <div class="stat-row">
+      <div class="stat">
+        <span class="num">65%+</span>
+        <span class="label">of Korea's 238 recorded heat deaths since 2011 were people aged 60+</span>
+        <div><a href="sources/korea-heat-deaths-elderly.md">source</a></div>
+      </div>
+      <div class="stat">
+        <span class="num">32%</span>
+        <span class="label">of those 238 deaths happened on farms</span>
+        <div><a href="sources/korea-heat-deaths-elderly.md">source</a></div>
+      </div>
+      <div class="stat">
+        <span class="num">4 of 7</span>
+        <span class="label">2025 heat deaths (through July 8) were people aged 70+</span>
+        <div><a href="sources/korea-heat-deaths-elderly.md">source</a></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>The problem</h2>
+    <p>
+      Since South Korea's Korea Disease Control and Prevention Agency (KDCA) began
+      monitoring in 2011, it has recorded <strong>238 heat-related deaths</strong>.
+      <strong>156 of them — over 65% — were aged 60 or older</strong>, and close to a
+      third happened on farms.
+      <span class="cite">(<a href="sources/korea-heat-deaths-elderly.md">Korea heat deaths, elderly</a>)</span>
+    </p>
+    <p>
+      The government's own advice is for agricultural workers to
+      <blockquote>"work in early mornings or late evenings and avoid going outdoors
+      in the hours between noon and 5 p.m."</blockquote>
+      <span class="cite">(<a href="sources/korea-heat-deaths-elderly.md">Korea heat deaths, elderly</a>)</span>
+      — advice that assumes someone else can cover the midday work. For a farmer
+      working alone, there may be no one else.
+    </p>
+    <p class="cite">
+      Full write-up: <a href="wiki/problem-statement.md">wiki/problem-statement.md</a>
+    </p>
+  </section>
+
+  <section>
+    <h2>The concept: a heat check-in service</h2>
+    <div class="who-what">
+      <div class="card">
+        <h3>Who it's for</h3>
+        <p>The elderly farmer is enrolled and uses it day to day. A family member
+        (typically an adult child) signs up and pays.</p>
+      </div>
+      <div class="card">
+        <h3>What it does</h3>
+        <p>On any day with an active extreme-heat advisory, sends a single SMS
+        check-in. No reply escalates to a neighbor.</p>
+      </div>
+    </div>
+    <p class="cite" style="margin-top:14px;">
+      Full concept: <a href="wiki/concept.md">wiki/concept.md</a>
+    </p>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="n">1</div>
+        <div class="body"><b>Extreme-heat advisory is issued</b>That's the trigger — nothing happens on an ordinary day.</div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="n">2</div>
+        <div class="body"><b>Farmer gets one SMS check-in</b>Sent to a basic phone, no app required.</div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="n">3</div>
+        <div class="body"><b>Farmer replies — or doesn't</b>A reply within the window ends it there.</div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="n">4</div>
+        <div class="body"><b>No reply → the pre-designated neighbor is contacted</b>They check on the farmer in person.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What this doesn't do yet</h2>
+    <div class="scope-box">
+      <h3>Deliberately out of scope</h3>
+      <ul>
+        <li>
+          <strong>Farmers with no reachable neighbor.</strong> Enrollment requires
+          naming one. Both named cases in our source — the Jinju greenhouse, the
+          Jeju rice paddy — were people found only after collapsing, with no one
+          nearby. A neighbor-based service does not yet reach that exact situation.
+          <span class="cite">(<a href="sources/korea-heat-deaths-elderly.md">Korea heat deaths, elderly</a>)</span>
+        </li>
+        <li>
+          <strong>Deaths at home or near roads.</strong> Of the 238 recorded deaths,
+          <strong>15% happened at home</strong> and roughly <strong>14% near roads</strong> —
+          this service is scoped to farm work, not those settings.
+          <span class="cite">(<a href="sources/korea-heat-deaths-elderly.md">Korea heat deaths, elderly</a>)</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Every figure on this page is quoted from a source file in this repository —
+    click any "source" link to read it directly. No statistic on this page is
+    invented or estimated by us.</p>
+    <p>
+      <a href="wiki/index.md">Read the full wiki</a> ·
+      <a href="wiki/problem-statement.md">Problem statement</a> ·
+      <a href="wiki/concept.md">Concept</a> ·
+      <a href="wiki/la-vs-south-korea.md">LA vs. South Korea</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
